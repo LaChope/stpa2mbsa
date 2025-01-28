@@ -1,9 +1,6 @@
 #!/bin/bash
 
-WORKSPACE=/opt/java-libs/
-
-
-#PROJECT_DIR=/opt/projects/19msmt
+WORKSPACE=/opt/java-libs/brat-annotator
 BRAT_DATA_HOME=/brat-data
 ANNOTATIONS_DIR=$BRAT_DATA_HOME
 
@@ -16,11 +13,6 @@ ls -1 */*/*.txt | while read TEXT_FILE; do
 
         if [ ! -s $ANN_FILE ]; then
                 echo INFO: Skipping file $TEXT_FILE as there were no annotations found in $ANN_FILE.
-                continue;
-        fi
-
-        if ! echo "$TEXT_FILE" | grep -- '--demo\|--section' >/dev/null; then 
-                echo INFO: Skipping file $TEXT_FILE as it is not part of demo.
                 continue;
         fi
 

@@ -1,4 +1,0 @@
- DA 42 AFM                                                          Airplane Description
-7.1    INTRODUCTION
-Chapter 7 contains a description of the airplane and its systems, together with operating
-instructions.

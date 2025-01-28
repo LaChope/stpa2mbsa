@@ -3,7 +3,7 @@ version: '2'
 services:
   nginx:
     build: ./nginx/
-    container_name: msmt-nginx
+    container_name: stpa2mbsa-nginx
     restart: always
     ports:
       - "${PORT:-8090}:80"
@@ -11,15 +11,11 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/web:/web
     depends_on:
-      - graphdb
-      - fta-fmea
-      - fta-fmea-server
-      - fta-fmea-converter
       - annotator
 
   annotator:
     build: ./annotator/
-    container_name: msmt-annotator
+    container_name: stpa2mbsa-annotator
     restart: unless-stopped
     environment:
       BRAT_USERNAME: ${BRAT_USERNAME:-editor}
@@ -27,45 +23,4 @@ services:
       BRAT_EMAIL: ${BRAT_EMAIL:-admin@example.org}
     volumes:
       - ./brat-data:/brat-data
-
-  fta-fmea-converter:
-    build: ./fta-fmea-converter/
-    container_name: msmt-fta-fmea-converter
-    restart: unless-stopped
-    volumes:
-      - ./brat-data:/scripts/annotations
-
-  fta-fmea:
-    image: ghcr.io/kbss-cvut/fta-fmea-ui:latest
-    restart: unless-stopped
-    environment:
-      API_URL: ${API_URL:-http://localhost:8090/fta-fmea-server}
-      ADMIN_REGISTRATION_ONLY: ${ADMIN_REGISTRATION_ONLY:-false}
-    depends_on:
-      - fta-fmea-server
-
-  fta-fmea-server:
-    image: ghcr.io/kbss-cvut/fta-fmea:latest
-    restart: unless-stopped
-    depends_on:
-      - graphdb
-      - fta-fmea-converter
-    environment:
-      REPOSITORY_URL: ${REPOSITORY_URL:-http://graphdb:7200/repositories/fta-fmea}
-      LIST_DOCUMENT_API: ${LIST_DOCUMENT_API:-http://fta-fmea-converter:8080/s-pipes/service?_pId=list-documents}
-      CONVERT_DOCUMENT_API: ${CONVERT_DOCUMENT_API:-http://fta-fmea-converter:8080/s-pipes/service?_pId=convert-document}
-
-  graphdb:
-    build:
-      context: .
-      dockerfile: db-server/Dockerfile
-      args:
-        GRAPHDB_ZIP: ${GRAPHDB_ZIP:-graphdb-free-9.11.2-dist.zip}
-    restart: unless-stopped
-    container_name: graphdb
-    volumes:
-      - fta-fmea-db-server:/graphdb/home
-
-volumes:
-  fta-fmea-db-server:
 

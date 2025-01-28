@@ -1,10 +1,5 @@
 FROM httpd
 
-#FROM ubuntu
-
-# set users cfg file
-#ARG USERS_CFG=users.json
-
 # Install pre-reqs
 RUN apt-get update
 RUN apt-get install -y curl vim sudo wget rsync
@@ -32,9 +27,6 @@ RUN curl -O https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz && \
 
 # Fetch  brat
 RUN mkdir /var/www/brat
-# RUN curl http://weaver.nlplab.org/~brat/releases/brat-v1.3_Crunchy_Frog.tar.gz > /var/www/brat/brat-v1.3_Crunchy_Frog.tar.gz 
-#COPY ./brat-v1.3_Crunchy_Frog.tar.gz /var/www/brat/brat-v1.3_Crunchy_Frog.tar.gz
-#RUN cd /var/www/brat && tar -xvzf brat-v1.3_Crunchy_Frog.tar.gz
 
 COPY ./config/brat-v1.3_Crunchy_Frog.tar.gz /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog.tar.gz
 RUN cd /usr/local/apache2/htdocs && tar -xvzf brat-v1.3_Crunchy_Frog.tar.gz && mv brat-v1.3_Crunchy_Frog brat
@@ -56,9 +48,6 @@ ENV BRAT_PASSWORD brat
 ENV BRAT_ADMIN_EMAIL blcham@gmail.com
 
 VOLUME /brat-data
-
-#RUN FastCGI 
-#RUN cd /usr/local/apache2/htdocs/brat-v1.3_Crunchy_Frog/server/lib/ && tar xfz flup-1.0.2.tar.gz 
 
 # Install gate-tools
 COPY ./config/gate-tools.jar /opt/java-libs/gate-tools.jar

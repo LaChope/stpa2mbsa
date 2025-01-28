@@ -1,1 +1,0 @@
-csplit --prefix=DA42-POH- --suffix-format=%02d.txt DA42-POH.txt "/^ \{0,1\}[0-9][A-Z]\{0,1\}\.[0-9]\{1,2\} \{2,6\}[A-Z]\{2,\}[A-Z0-9,.\- ]* /" {*}

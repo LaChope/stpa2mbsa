@@ -1,5 +1,0 @@
- Maintenance
-8.1    INTRODUCTION
-Chapter 8 contains the manufacturer's recommended procedures for proper ground
-handling and servicing of the airplane. The Airplane Maintenance Manual (Doc. No.
-7.02.01) lists certain inspection and maintenance requirements which must be followed

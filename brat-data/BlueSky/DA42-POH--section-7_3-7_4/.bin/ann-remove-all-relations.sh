@@ -1,1 +1,0 @@
-../../../.bin/ann-remove-all-relations.sh

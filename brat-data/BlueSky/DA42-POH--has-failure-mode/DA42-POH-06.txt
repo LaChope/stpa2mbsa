@@ -1,3 +1,0 @@
- General                                                                     DA 42 AFM
-1.2    CERTIFICATION BASIS
-The certification basis is JAR-23, published on 11-Mar-1994, including Amdt. 1, and

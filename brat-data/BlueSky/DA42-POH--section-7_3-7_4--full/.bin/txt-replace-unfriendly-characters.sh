@@ -1,1 +1,0 @@
-../../../.bin/txt-replace-unfriendly-characters.sh

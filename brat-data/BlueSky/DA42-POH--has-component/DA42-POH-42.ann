@@ -1,4 +1,0 @@
-T1	fmea_Component 98 117	BAGGAGE COMPARTMENT
-T2	fmea_Component 178 190	nose section
-R1	fmea_hasComponent Arg1:T2 Arg2:T1	
-T3	fmea_Component 290 294	seat

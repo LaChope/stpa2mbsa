@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <uri id="User Entered Import Resolution" name="http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-44" uri="DA42-POH-44.ttl"/>
-    <uri id="User Entered Import Resolution" name="http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-43" uri="DA42-POH-43.ttl"/>
-    <uri id="User Entered Import Resolution" name="http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-40" uri="DA42-POH-40.ttl"/>
-    <uri id="User Entered Import Resolution" name="http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-39" uri="DA42-POH-39.ttl"/>
-    <uri id="User Entered Import Resolution" name="http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-38" uri="DA42-POH-38.ttl"/>
-    <uri id="User Entered Import Resolution" name="http://onto.fel.cvut.cz/ontologies/fmea/19msmt/BlueSky/DA42-POH--has-component/DA42-POH-42" uri="DA42-POH-42.ttl"/>
-</catalog>

@@ -1,1 +1,0 @@
-http://onto.fel.cvut.cz/ontologies/fmea  ../../.ontologies/FMEA-for-gate.xml

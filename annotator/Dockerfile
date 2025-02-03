@@ -9,6 +9,7 @@ RUN apt-get install -y default-jre
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Install deprecated Python 2 version (https://github.com/kbss-cvut/19msmt-distribution/issues/57)
 # Install dependencies for building Python 2
 RUN apt-get update && apt-get install -y \
     curl vim sudo wget rsync \
@@ -17,7 +18,6 @@ RUN apt-get update && apt-get install -y \
     libsqlite3-dev libbz2-dev libreadline-dev \
     libffi-dev && \
     apt-get clean
-
 # Download and compile Python 2.7.18
 RUN curl -O https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz && \
     tar xzf Python-2.7.18.tgz && \
@@ -33,7 +33,6 @@ RUN cd /usr/local/apache2/htdocs && tar -xvzf brat-v1.3_Crunchy_Frog.tar.gz && m
 COPY cgi-bin /usr/local/apache2/htdocs/brat
 RUN chmod +x /usr/local/apache2/htdocs/brat/*.sh
 
-RUN #apt-get update && apt-get install -y python
 ADD ./config/httpd.conf /usr/local/apache2/conf/
 ADD ./config/install.sh /usr/local/apache2/htdocs/brat/
 RUN mkdir -p /usr/local/apache2/htdocs/brat/bin

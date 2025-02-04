@@ -21,4 +21,4 @@ ls -1 */*/*.txt | while read TEXT_FILE; do
 done
  
 # give rights for brat web tool
-chmod -R 777 /brat-data/BlueSky 
+chmod -R 777 /brat-data/AIDA

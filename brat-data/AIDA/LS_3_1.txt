@@ -1,1 +1,0 @@
-LS_3_1: Control Desk provides the Mission Commands action too late - Control Desk received feedback (or other inputs) that indicated the mission has already started on time

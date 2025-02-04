@@ -1,0 +1,7 @@
+:LS-3_1 a :LossScenario ;
+    :hasType :1 ;
+    :hasController :Control_Desk ;
+    :hasControlAction :Querry_Mission_Data ;
+    :hasControlledProcess :Airline_Maintenance_Database ;
+    :hasContext :"too late when the mission has already started" .
+

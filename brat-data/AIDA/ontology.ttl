@@ -1,0 +1,294 @@
+@prefix : <http://onto.fel.cvut.cz/ontologies/fmea#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fmea: <http://onto.fel.cvut.cz/ontologies/fmea/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://onto.fel.cvut.cz/ontologies/fmea> .
+
+<http://onto.fel.cvut.cz/ontologies/fmea> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/examines
+fmea:examines rdf:type owl:ObjectProperty ;
+              owl:inverseOf fmea:isExaminedBy ;
+              rdfs:domain fmea:FMEA ;
+              rdfs:range fmea:Component .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/hasCause
+fmea:hasCause rdf:type owl:ObjectProperty ;
+              owl:inverseOf fmea:isCauseOf ;
+              rdf:type owl:TransitiveProperty ;
+              rdfs:domain fmea:FailureMode ;
+              rdfs:range fmea:Cause .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/hasCompensatingProvision
+fmea:hasCompensatingProvision rdf:type owl:ObjectProperty ;
+                              owl:inverseOf fmea:isCompensatingProvisionOf ;
+                              rdfs:domain fmea:FailureMode ;
+                              rdfs:range fmea:CompensatingProvision .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/hasFinalLevelEffect
+fmea:hasFinalLevelEffect rdf:type owl:ObjectProperty ;
+                          owl:inverseOf fmea:isFinalLevelEffectOf ;
+                          rdf:type owl:TransitiveProperty ;
+                          rdfs:domain fmea:LocalEffect ,
+                                      fmea:NextLevelEffect ;
+                          rdfs:range fmea:FinalLevelEffect .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/hasFailureMode
+fmea:hasFailureMode rdf:type owl:ObjectProperty ;
+                    owl:inverseOf fmea:isFailureModeOf ;
+                    rdf:type owl:TransitiveProperty ;
+                    rdfs:domain fmea:Component ;
+                    rdfs:range fmea:FailureMode .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/hasFunction
+fmea:hasFunction rdf:type owl:ObjectProperty ;
+                 owl:inverseOf fmea:isFunctionOf ;
+                 rdfs:domain fmea:Component ;
+                 rdfs:range fmea:Function .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/hasLocalEffect
+fmea:hasLocalEffect rdf:type owl:ObjectProperty ;
+                    owl:inverseOf fmea:isLocalEffectOf ;
+                    rdf:type owl:TransitiveProperty ;
+                    rdfs:domain fmea:FailureMode ;
+                    rdfs:range fmea:LocalEffect .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/hasNextLevelEffect
+fmea:hasNextLevelEffect rdf:type owl:ObjectProperty ;
+                        owl:inverseOf fmea:isNextLevelEffectOf ;
+                        rdf:type owl:TransitiveProperty ;
+                        rdfs:domain fmea:LocalEffect ;
+                        rdfs:range fmea:NextLevelEffect .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/isCauseOf
+fmea:isCauseOf rdf:type owl:ObjectProperty ,
+                        owl:TransitiveProperty ;
+               rdfs:domain fmea:Cause ;
+               rdfs:range fmea:FailureMode .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/isCompensatingProvisionOf
+fmea:isCompensatingProvisionOf rdf:type owl:ObjectProperty ;
+                               rdfs:domain fmea:CompensatingProvision ;
+                               rdfs:range fmea:FailureMode .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/isFinalLevelEffectOf
+fmea:isFinalLevelEffectOf rdf:type owl:ObjectProperty ,
+                                    owl:TransitiveProperty ;
+                           rdfs:domain fmea:FinalLevelEffect ;
+                           rdfs:range fmea:LocalEffect ,
+                                      fmea:NextLevelEffect .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/isExaminedBy
+fmea:isExaminedBy rdf:type owl:ObjectProperty ;
+                  rdfs:domain fmea:Component ;
+                  rdfs:range fmea:FMEA .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/isFailureModeOf
+fmea:isFailureModeOf rdf:type owl:ObjectProperty ,
+                              owl:TransitiveProperty ;
+                     rdfs:domain fmea:FailureMode ;
+                     rdfs:range fmea:Component .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/isFunctionOf
+fmea:isFunctionOf rdf:type owl:ObjectProperty ;
+                  rdfs:domain fmea:Function ;
+                  rdfs:range fmea:Component .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/isLocalEffectOf
+fmea:isLocalEffectOf rdf:type owl:ObjectProperty ,
+                              owl:TransitiveProperty ;
+                     rdfs:domain fmea:LocalEffect ;
+                     rdfs:range fmea:FailureMode .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/isNextLevelEffectOf
+fmea:isNextLevelEffectOf rdf:type owl:ObjectProperty ,
+                                  owl:TransitiveProperty ;
+                         rdfs:domain fmea:NextLevelEffect ;
+                         rdfs:range fmea:LocalEffect .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/isViolatedBy
+fmea:isViolatedBy rdf:type owl:ObjectProperty ;
+                  owl:inverseOf fmea:violates ;
+                  rdfs:domain fmea:Function ;
+                  rdfs:range fmea:FailureMode .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/violates
+fmea:violates rdf:type owl:ObjectProperty ;
+              rdfs:domain fmea:FailureMode ;
+              rdfs:range fmea:Function .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/FMEA_description
+fmea:FMEA_description rdf:type owl:DatatypeProperty ;
+                      rdfs:domain fmea:FMEA ;
+                      rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/FMEA_leader
+fmea:FMEA_leader rdf:type owl:DatatypeProperty ;
+                 rdfs:domain fmea:FMEA ;
+                 rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/FMEA_nr
+fmea:FMEA_nr rdf:type owl:DatatypeProperty ;
+             rdfs:domain fmea:FMEA ;
+             rdfs:range xsd:integer .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/cause_description
+fmea:cause_description rdf:type owl:DatatypeProperty ;
+                       rdfs:domain fmea:Cause ;
+                       rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/compensating_provision_description
+fmea:compensating_provision_description rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain fmea:CompensatingProvision ;
+                                        rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/component_name
+fmea:component_name rdf:type owl:DatatypeProperty ;
+                    rdfs:domain fmea:Component ;
+                    rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/component_reference_nr
+fmea:component_reference_nr rdf:type owl:DatatypeProperty ;
+                            rdfs:domain fmea:Component ;
+                            rdfs:range xsd:integer .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/engine_level_effect_description
+fmea:engine_level_effect_description rdf:type owl:DatatypeProperty ;
+                                     rdfs:domain fmea:FinalLevelEffect ;
+                                     rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/failure_mode_description
+fmea:failure_mode_description rdf:type owl:DatatypeProperty ;
+                              rdfs:domain fmea:FailureMode ;
+                              rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/failure_mode_reference_nr
+fmea:failure_mode_reference_nr rdf:type owl:DatatypeProperty ;
+                               rdfs:domain fmea:FailureMode ;
+                               rdfs:range xsd:integer .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/function_description
+fmea:function_description rdf:type owl:DatatypeProperty ;
+                          rdfs:domain fmea:Function ;
+                          rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/function_reference_nr
+fmea:function_reference_nr rdf:type owl:DatatypeProperty ;
+                           rdfs:domain fmea:Function ;
+                           rdfs:range xsd:integer .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/local_effect_description
+fmea:local_effect_description rdf:type owl:DatatypeProperty ;
+                              rdfs:domain fmea:LocalEffect ;
+                              rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/next_level_effect_description
+fmea:next_level_effect_description rdf:type owl:DatatypeProperty ;
+                                   rdfs:domain fmea:NextLevelEffect ;
+                                   rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/occurence
+fmea:occurence rdf:type owl:DatatypeProperty ;
+               rdfs:domain fmea:FailureMode ;
+               rdfs:range xsd:string .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/severity
+fmea:severity rdf:type owl:DatatypeProperty ;
+              rdfs:domain fmea:LocalEffect ;
+              rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/Cause
+fmea:Cause rdf:type owl:Class ;
+           rdfs:subClassOf fmea:FailureMode .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/CompensatingProvision
+fmea:CompensatingProvision rdf:type owl:Class .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/Component
+fmea:Component rdf:type owl:Class .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/Effect
+fmea:Effect rdf:type owl:Class ;
+            rdfs:subClassOf fmea:FailureMode .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/FinalLevelEffect
+fmea:FinalLevelEffect rdf:type owl:Class ;
+                       rdfs:subClassOf fmea:Effect .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/FMEA
+fmea:FMEA rdf:type owl:Class .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/FailureMode
+fmea:FailureMode rdf:type owl:Class .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/Function
+fmea:Function rdf:type owl:Class .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/LocalEffect
+fmea:LocalEffect rdf:type owl:Class ;
+                 rdfs:subClassOf fmea:Effect .
+
+
+###  http://onto.fel.cvut.cz/ontologies/fmea/NextLevelEffect
+fmea:NextLevelEffect rdf:type owl:Class ;
+                     rdfs:subClassOf fmea:Effect .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

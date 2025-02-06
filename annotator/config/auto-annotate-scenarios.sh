@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Usage: ./auto-annotate-scenarios.sh <combined_scenarios.json>
+# Usage: ./auto-annotate-scenarios.sh <scenarios.json>
 
 # --- Check arguments ---
 if [ "$#" -ne 1 ]; then

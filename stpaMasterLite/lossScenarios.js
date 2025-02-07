@@ -433,20 +433,6 @@ function setLossScenario(scenario, row) {
     SpreadsheetApp.getUi().alert("Error parsing metadata JSON: " + e);
     return;
   }
-
-  const controller = metadata.controller;
-  const controlAction = metadata.controlAction;
-  const controlledProcess = metadata.controlledProcess;
-  const context = metadata.context;
-
-  // addLossScenarioToOntology(
-  //   scenario.type - 1,
-  //   scenarioId,
-  //   controller,
-  //   controlAction,
-  //   controlledProcess,
-  //   context
-  // );
 }
 
 function getLossScenarios() {
@@ -465,27 +451,6 @@ function getLossScenarios() {
         scenarioMap[id] = ls;
   });
   return scenarioMap;
-}
-
-function addLossScenarioToOntology(type, scenarioId, controller, controlAction, controlledProcess, context) {
-  const ontoScenarioId = scenarioId?.replace(/[^\w-]/g, "_");
-  const ontoController = controller?.replace(/\s+/g, "_");
-  const ontoControlAction = controlAction?.replace(/\s+/g, "_");
-  const ontoControlledProcess = controlledProcess?.replace(/\s+/g, "_");
-
-  let ttlSnippet = `
-:${ontoScenarioId} a :LossScenario ;
-    :hasType :${type}
-    :hasController :${ontoController} ;
-    :hasControlAction :${ontoControlAction} ;
-    :hasControlledProcess :${ontoControlledProcess} ;
-    ${context != null ? `:hasContext :"${context}"` : `:hasContext :false`} .
-`;
-
-  // If you also want to map to MBSA variables, you can add lines like:
-  // ttlSnippet += `    :mapsToMBSA :SomeAltaRicaVariable ;\n`;
-
-  appendToTtlFile(ttlSnippet);
 }
 
 function getAllMetadata() {
@@ -530,29 +495,20 @@ function getAllMetadata() {
   return metadataMap;
 }
 
-function exportAllMetadataToTtl() {
-  const allMetadata = getAllMetadata();
-  
-  for (const scenarioId in allMetadata) {
-    const meta = allMetadata[scenarioId];
-    const ontoScenarioId = scenarioId.replace(/[^\w-]/g, "_");
-    const typeMatch = ontoScenarioId.match(/LS-\d+_(\d+)/);
-    const type = typeMatch ? typeMatch[1] : "UnknownType";
-    const ontoController = (meta.controller || "UnknownController").replace(/\s+/g, "_");
-    const ontoAction = (meta.controlAction || "UnknownAction").replace(/\s+/g, "_");
-    const ontoProcess = (meta.controlledProcess || "UnknownProcess").replace(/\s+/g, "_");
-    const contextStr = meta.context || "";
-
-    const ttlSnippet = `
-:${ontoScenarioId} a :LossScenario ;
-    :hasType :${type} ;
-    :hasController :${ontoController} ;
-    :hasControlAction :${ontoAction} ;
-    :hasControlledProcess :${ontoProcess} ;
-    :hasContext :"${contextStr}" .
-`;
-    appendToTtlFile(ttlSnippet);
+function exportAllScenarios() {
+  const scenarios = getLossScenarios();
+  const combined = {};
+  for (let id in scenarios) {
+    combined[id] = {
+      scenarioText: scenarios[id],
+      metadata: metadata[id] || {}
+    };
   }
-
-  SpreadsheetApp.getUi().alert("Exported all metadata to TTL!");
+  
+  const jsonContent = JSON.stringify(combined, null, 2);
+  const file = getOrCreateJsonFile();
+  file.setContent(jsonContent);
+  
+  SpreadsheetApp.getUi().alert("Combined JSON file saved: " + file.getUrl());
 }
+
